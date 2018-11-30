@@ -8,6 +8,10 @@
                         <router-link class="nav-link" :to="{name: 'posts'}">Posts</router-link>
                     </li>
 
+                    <li class="nav-item active">
+                        <router-link class="nav-link" :to="{name: 'add-post'}">Add</router-link>
+                    </li>
+
                 </ul>
             </div>
         </nav>

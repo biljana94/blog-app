@@ -15,6 +15,10 @@ class Posts {
     get(id) {
         return axios.get(`posts/${id}`);
     }
+
+    add(post) {
+        return axios.post('posts', post);
+    }
 }
 
 export const posts = new Posts(); //importujemo je ovako: import {posts} from...
