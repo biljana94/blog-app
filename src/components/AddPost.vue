@@ -16,6 +16,7 @@
                     <textarea v-model="newPost.text" class="form-control form-control-lg" rows="7"></textarea>
                 </div>
                 <button type="submit" class="btn btn-success">Submit</button>
+                <button @click="resetForm()" type="button" class="btn btn-danger">Reset Form</button>
             </form>
 
     </div>
@@ -40,6 +41,10 @@ export default {
                     this.$router.push({ path: '/posts' });
                     this.newPost = {};
                 })
+        },
+
+        resetForm() {
+            this.newPost = {};
         }
     },
 }
