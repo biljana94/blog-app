@@ -10,6 +10,11 @@ class Posts {
     getAll() {
         return axios.get('posts');
     }
+
+    //dovlacimo sa rute posts id 
+    get(id) {
+        return axios.get(`posts/${id}`);
+    }
 }
 
 export const posts = new Posts(); //importujemo je ovako: import {posts} from...

@@ -5,7 +5,10 @@
         <br>
 
         <ul class="list-group list-group-flush" v-for="(post, index) in posts" :key="index">
-            <li class="list-group-item list-group-item-info"> {{ post.title }} </li>
+            <li class="list-group-item list-group-item-info">
+                {{ post.title }}
+                <button @click="navigateToSinglePost(post.id)" type="button" class="btn btn-light">View Post</button>
+            </li>
         </ul>
     </div>
 </template>
@@ -14,6 +17,7 @@
 <script>
 
 import { posts } from '../services/PostsService.js';
+import SinglePost from './SinglePost.vue';
 
 export default {
     data() {
@@ -28,6 +32,12 @@ export default {
             .then(response => {
                 this.posts = response.data;
             })
-    }
+    },
+
+    methods: {
+        navigateToSinglePost(id) {
+            this.$router.push({ path: `/posts/${id}` });
+        }
+    },
 }
 </script>
