@@ -8,6 +8,11 @@
             <li class="list-group-item list-group-item-info">
                 {{ post.title }}
                 <button @click="navigateToSinglePost(post.id)" type="button" class="btn btn-light">View Post</button>
+
+                <router-link :to="{ name: 'edit-post', params: {id: post.id} }">
+                    <button type="button" class="btn btn-light">Edit Post</button>
+                </router-link>
+                
             </li>
         </ul>
     </div>

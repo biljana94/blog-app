@@ -1,7 +1,7 @@
 <template>
     <div class="container">
 
-            <form @submit.prevent="addPost()">
+            <form @submit.prevent="onSubmit()">
                 <br>
 
                 <div class="form-group row">
@@ -31,6 +31,8 @@ export default {
     data() {
         return {
             newPost: {},
+
+            editing: false,
         }
     },
 
@@ -45,7 +47,33 @@ export default {
 
         resetForm() {
             this.newPost = {};
+        },
+
+        editPost() {
+            posts.edit(this.$route.params.id, this.newPost)
+                .then(() => {
+                    this.$router.push({ path: '/posts' });
+                })
+        },
+
+        onSubmit() {
+            if(this.editing) {
+                this.editPost();
+            } else {
+                this.addPost();
+            }
         }
     },
+
+    //hook
+    created() {
+        if(this.$route.params.id) {
+            posts.get(this.$route.params.id)
+                .then(response => {
+                    this.editing = true;
+                    this.newPost = response.data;
+                })
+        }
+    }
 }
 </script>
