@@ -6,14 +6,14 @@
 
                 <div class="form-group row">
                     <label>Post Title</label>
-                    <input v-model="newPost.title" type="text" class="form-control form-control-lg" placeholder="Enter title">
+                    <input v-model="newPost.title" type="text" class="form-control form-control-lg" placeholder="Enter title" minlength="2" required>
                 </div>
 
                 <br>
 
                 <div class="form-group row">
                     <label>Post Text</label>
-                    <textarea v-model="newPost.text" class="form-control form-control-lg" rows="7"></textarea>
+                    <textarea v-model="newPost.text" class="form-control form-control-lg" rows="7" maxlength="300" required></textarea>
                 </div>
                 <button type="submit" class="btn btn-success">Submit</button>
                 <button @click="resetForm()" type="button" class="btn btn-danger">Reset Form</button>
