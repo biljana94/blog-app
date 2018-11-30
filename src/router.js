@@ -13,10 +13,10 @@ Vue.use(VueRouter);
 
 const routes = [
     { path: '/', redirect: '/posts' },
-    { path: '/posts', component: AppPosts },
+    { path: '/posts', component: AppPosts, name: 'posts' },
 ];
 
 export const router = new VueRouter({
-    mode: 'history',
+    mode: 'history', //da nema # u ruti
     routes
 });
