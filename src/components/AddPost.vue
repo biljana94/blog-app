@@ -40,7 +40,7 @@ export default {
         addPost() {
             posts.add(this.newPost)
                 .then(() => {
-                    this.$router.push({ path: '/posts' });
+                    this.$router.push({ path: '/posts' }); //redirektovanje
                     this.newPost = {};
                 })
         },
@@ -50,28 +50,28 @@ export default {
         },
 
         editPost() {
-            posts.edit(this.$route.params.id, this.newPost)
+            posts.edit(this.$route.params.id, this.newPost) //u postsService su parametri za edit(id, post) => (this.$route.params.id, this.newPost)
                 .then(() => {
                     this.$router.push({ path: '/posts' });
                 })
         },
 
         onSubmit() {
-            if(this.editing) {
-                this.editPost();
+            if(this.editing) { //ako je editing=true
+                this.editPost();//edituj
             } else {
-                this.addPost();
+                this.addPost();//ako nije adduj
             }
         }
     },
 
-    //hook
+    //hook - ne poziva se i u njega pozivamo metode koje ce se prikazati na stranici pomocu fnc iz servisa (uglavnom pozivamo get() metodu)
     created() {
-        if(this.$route.params.id) {
-            posts.get(this.$route.params.id)
+        if(this.$route.params.id) { //ako taj id postoji u bazi
+            posts.get(this.$route.params.id) //vrati iz pomocu axios biblioteke iz 'posts.get()' taj id(this.$route.params.id)
                 .then(response => {
-                    this.editing = true;
-                    this.newPost = response.data;
+                    this.editing = true; //promeni editing na true, da bi mogli da koristimo 2 fnc na dugme submit(onSubmit())
+                    this.newPost = response.data; //vrati response
                 })
         }
     }
